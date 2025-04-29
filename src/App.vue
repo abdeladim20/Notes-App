@@ -8,7 +8,7 @@ function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 const addNotes = () => {
-  if (newNote.value.trim.length < 10) {
+  if (newNote.value.length < 10) {
     return errorMessage.value = "Note is need to be 10 characters or more!!!"
   }
   notes.value.push({
@@ -28,7 +28,7 @@ const addNotes = () => {
   <main>
     <div v-if="showModal" class="overlay">
       <div class="modal">
-        <textarea v-model="newNote" name="note" id="note" cols="30" rows="10"></textarea>
+        <textarea v-model.trim="newNote" name="note" id="note" cols="30" rows="10"></textarea>
         <p v-if="errorMessage">{{ errorMessage }}</p>
         <button @click="addNotes()">Add Note</button>
         <button class="close" @click="showModal = false">Close</button>
